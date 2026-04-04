@@ -1,60 +1,163 @@
-const video = document.getElementById('main-video');
-const clickLayer = document.getElementById('click-layer');
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 
-video.play().catch(() => {});
+:root {
+  --gold: #C8860A;
+  --amber: #E8A020;
+  --deep: #060606;
+  --white: #F0EDE8;
+  --ash: rgba(240,237,232,0.45);
+}
 
-// Unmute button — visible for first 5 seconds
-const unmuteBtn = document.createElement('div');
-unmuteBtn.id = 'unmute-btn';
-unmuteBtn.innerHTML = '🔇';
-unmuteBtn.style.cssText = `
-  position: fixed;
-  top: 20px;
-  right: 20px;
-  z-index: 20;
-  color: rgba(255,255,255,0.8);
-  font-size: 1.8rem;
-  cursor: pointer;
-  padding: 8px;
-  opacity: 1;
-  transition: opacity 0.6s ease;
-`;
-document.body.appendChild(unmuteBtn);
+html, body {
+  width: 100%;
+  background: #000;
+  color: var(--white);
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  overflow-x: hidden;
+  -webkit-tap-highlight-color: transparent;
+}
 
-// Fade out unmute button after 5 seconds
-setTimeout(() => {
-  unmuteBtn.style.opacity = '0';
-  setTimeout(() => unmuteBtn.remove(), 600);
-}, 5000);
+/* ── VIDEO WRAPPER ── */
+.video-wrapper {
+  width: 100%;
+  background: #000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+}
 
-unmuteBtn.addEventListener('click', () => {
-  video.muted = false;
-  video.play();
-  unmuteBtn.innerHTML = '🔊';
-  setTimeout(() => {
-    unmuteBtn.style.opacity = '0';
-    setTimeout(() => unmuteBtn.remove(), 600);
-  }, 1500);
-});
+/* Desktop — vertical video tall, black on sides */
+.video-wrapper video {
+  height: 100vh;
+  width: auto;
+  max-width: 100%;
+  display: block;
+  object-fit: contain;
+  background: #000;
+}
 
-// Activate click layer at 4.5 seconds
-let activated = false;
-video.addEventListener('timeupdate', () => {
-  if (!activated && video.currentTime >= 4.5) {
-    activated = true;
-    clickLayer.classList.add('active');
+/* Mobile — full screen */
+@media (max-width: 768px) {
+  .video-wrapper {
+    height: 100vh;
+    height: 100dvh;
+    min-height: unset;
   }
-});
 
-// Click goes to downloads page
-clickLayer.addEventListener('click', () => {
-  window.location.href = 'downloads.html';
-});
-
-// Fallback
-setTimeout(() => {
-  if (!activated) {
-    activated = true;
-    clickLayer.classList.add('active');
+  .video-wrapper video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
   }
-}, 5500);
+}
+
+/* ── DOWNLOADS SECTION ── */
+#downloads-section {
+  width: 100%;
+  background: var(--deep);
+  padding: 56px 24px 80px;
+  display: flex;
+  justify-content: center;
+}
+
+#downloads-inner {
+  width: 100%;
+  max-width: 560px;
+}
+
+.downloads-label {
+  font-size: 0.65rem;
+  letter-spacing: 0.4em;
+  color: var(--amber);
+  margin-bottom: 12px;
+  text-transform: uppercase;
+}
+
+.downloads-title {
+  font-size: 2.8rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  line-height: 1;
+  margin-bottom: 48px;
+  text-transform: uppercase;
+}
+
+.download-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  background: rgba(200,134,10,0.12);
+  border: 1px solid rgba(200,134,10,0.12);
+  margin-bottom: 48px;
+}
+
+.download-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  background: var(--deep);
+  padding: 24px 20px;
+  transition: background 0.3s ease;
+}
+
+.download-item:active {
+  background: rgba(200,134,10,0.05);
+}
+
+.download-info {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.download-name {
+  font-size: 0.9rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--white);
+}
+
+.download-desc {
+  font-size: 0.75rem;
+  font-weight: 300;
+  color: var(--ash);
+  letter-spacing: 0.02em;
+}
+
+.download-btn {
+  flex-shrink: 0;
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--deep);
+  background: var(--amber);
+  padding: 10px 18px;
+  text-decoration: none;
+  transition: background 0.3s ease;
+  white-space: nowrap;
+}
+
+.download-btn:active {
+  background: var(--white);
+}
+
+.contact-line {
+  font-size: 0.75rem;
+  font-weight: 300;
+  letter-spacing: 0.08em;
+  color: var(--ash);
+  text-align: center;
+}
+
+.contact-line a {
+  color: var(--amber);
+  text-decoration: none;
+}
