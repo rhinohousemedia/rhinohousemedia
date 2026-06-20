@@ -1,61 +1,356 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>Rhino House Media</title>
-  <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rhino House TV — Channel Guide</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Saira+Condensed:wght@500;600;700;800;900&family=Saira:wght@400;500;600&display=swap');
+
+:root{
+  --black:#050505;
+  --line:rgba(255,255,255,.07);
+  --steel:#d4d8d6;
+  --dim:#8a8f8c;
+  --green:#86e000;
+  --green-glow:rgba(134,224,0,.55);
+  --yt:#ff2d2d;
+  --ig:#c537c0;
+  --display:'Saira Condensed',sans-serif;
+  --body:'Saira',sans-serif;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--black);color:var(--steel);font-family:var(--body);
+  -webkit-font-smoothing:antialiased;overflow-x:hidden}
+
+/* ===================== INTRO VIDEO COLD OPEN ===================== */
+#intro{position:fixed;inset:0;z-index:100;background:#000;
+  display:flex;align-items:center;justify-content:center;overflow:hidden;
+  transition:opacity .8s ease,visibility .8s ease}
+#intro.done{opacity:0;visibility:hidden;pointer-events:none}
+#intro video{width:100%;height:100%;object-fit:cover;background:#000;
+  opacity:0;transition:opacity .5s ease}
+#intro video.ready{opacity:1}
+#vid-desktop{display:block}
+#vid-mobile{display:none}
+@media (max-width:760px){
+  #vid-desktop{display:none}
+  #vid-mobile{display:block}
+}
+.skip{position:absolute;bottom:26px;right:26px;z-index:2;
+  font-family:var(--display);font-weight:700;letter-spacing:.22em;font-size:12px;
+  text-transform:uppercase;color:var(--steel);background:rgba(0,0,0,.45);
+  border:1px solid var(--line);padding:9px 16px;cursor:pointer;
+  display:flex;align-items:center;gap:8px;transition:border-color .25s,color .25s}
+.skip:hover{border-color:var(--green-glow);color:var(--green)}
+.skip .arr{color:var(--green)}
+
+/* ===================== HEADER ===================== */
+.site{opacity:0;transition:opacity .9s ease .1s}
+.site.in{opacity:1}
+
+.header{position:relative;padding:clamp(18px,2.4vw,30px) clamp(20px,3vw,44px) clamp(20px,2.6vw,32px);
+  border-bottom:1px solid var(--line);overflow:hidden;
+  background:
+    radial-gradient(120% 140% at 80% 0,rgba(134,224,0,.06),transparent 55%),
+    #060606;}
+.header::after{content:"";position:absolute;left:0;right:0;bottom:0;height:1px;
+  background:linear-gradient(90deg,transparent,var(--green-glow),transparent);opacity:.5}
+.header-inner{display:flex;align-items:center;gap:clamp(16px,3vw,40px);
+  max-width:1680px;margin:0 auto;position:relative;z-index:2}
+.rh-badge{font-family:var(--display);font-weight:900;flex:none;display:flex;align-items:center;gap:7px;line-height:1}
+.rh-badge .rh{font-size:clamp(34px,4vw,56px);
+  background:linear-gradient(180deg,#fff,#cfd3d1 40%,#6f7472 100%);
+  -webkit-background-clip:text;background-clip:text;color:transparent;letter-spacing:-.02em}
+.rh-badge .tv{font-size:clamp(13px,1.4vw,18px);font-weight:800;color:var(--green);
+  border:1.5px solid var(--green);padding:2px 6px;letter-spacing:.05em;
+  box-shadow:0 0 12px rgba(134,224,0,.25);text-shadow:0 0 8px var(--green-glow)}
+.title-block{flex:1;text-align:center}
+.wordmark{font-family:var(--display);font-weight:900;text-transform:uppercase;
+  font-size:clamp(30px,6vw,76px);line-height:.9;letter-spacing:.01em;
+  background:linear-gradient(180deg,#fff 0%,#d2d6d4 36%,#838886 72%,#525654 100%);
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+  filter:drop-shadow(0 2px 1px rgba(0,0,0,.6))}
+.subline{font-family:var(--display);font-weight:700;text-transform:uppercase;
+  letter-spacing:.3em;font-size:clamp(10px,1.5vw,17px);color:var(--green);
+  margin-top:8px;display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:.5em 1.1em;
+  text-shadow:0 0 10px rgba(134,224,0,.3)}
+.subline .dot{width:5px;height:5px;border-radius:50%;background:var(--green);box-shadow:0 0 8px var(--green-glow)}
+.spacer{flex:none;width:clamp(34px,4vw,56px)}
+@media (max-width:760px){
+  .header-inner{flex-direction:column;gap:14px}
+  .spacer{display:none}
+}
+
+/* ===================== GUIDE BAR ===================== */
+.guidebar{display:flex;align-items:stretch;border-bottom:1px solid var(--line);
+  background:#070707;overflow-x:auto;-ms-overflow-style:none;scrollbar-width:none}
+.guidebar::-webkit-scrollbar{display:none}
+.guide-label{flex:none;padding:clamp(14px,1.6vw,20px) clamp(20px,2.4vw,38px);border-right:1px solid var(--line)}
+.guide-label .g1{font-family:var(--display);font-weight:800;text-transform:uppercase;
+  letter-spacing:.08em;font-size:clamp(15px,1.9vw,23px);color:#fff}
+.guide-label .g2{font-family:var(--display);font-weight:600;text-transform:uppercase;
+  letter-spacing:.18em;font-size:clamp(9px,1.1vw,12px);color:var(--dim);margin-top:2px}
+.tabs{display:flex;align-items:center;gap:clamp(4px,1.4vw,10px);padding:0 clamp(10px,1.5vw,20px);flex:1}
+.tab{position:relative;font-family:var(--display);font-weight:700;text-transform:uppercase;
+  letter-spacing:.12em;font-size:clamp(12px,1.3vw,16px);color:var(--dim);
+  padding:clamp(14px,1.6vw,20px) clamp(12px,1.6vw,24px);white-space:nowrap;
+  background:none;border:none;cursor:default}
+.tab.active{color:var(--green);border:1.5px solid var(--green);
+  box-shadow:0 0 16px rgba(134,224,0,.2),inset 0 0 14px rgba(134,224,0,.06);margin:8px 0}
+.tab.active::after{content:"";position:absolute;left:50%;bottom:-9px;transform:translateX(-50%);
+  width:60%;height:2px;background:var(--green);box-shadow:0 0 12px var(--green-glow),0 0 4px var(--green)}
+.tab:not(.active){opacity:.85}
+
+/* ===================== CHANNEL GRID ===================== */
+.grid{max-width:1680px;margin:0 auto;
+  padding:clamp(20px,2.6vw,40px) clamp(16px,2.4vw,40px) clamp(28px,3vw,48px);
+  display:grid;grid-template-columns:repeat(4,1fr);gap:clamp(14px,1.6vw,26px)}
+@media (max-width:1100px){.grid{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:620px){.grid{grid-template-columns:1fr}}
+
+.card{position:relative;background:linear-gradient(180deg,#0c0c0c,#070707);
+  border:1px solid var(--line);display:flex;flex-direction:column;
+  transition:transform .3s cubic-bezier(.2,.8,.2,1),border-color .3s,box-shadow .3s}
+.card:hover{transform:translateY(-6px)}
+.card.kick:hover{border-color:rgba(134,224,0,.45);box-shadow:0 18px 40px -16px rgba(134,224,0,.4)}
+.card.yt:hover{border-color:rgba(255,45,45,.45);box-shadow:0 18px 40px -16px rgba(255,45,45,.4)}
+.card.ig:hover{border-color:rgba(197,55,192,.5);box-shadow:0 18px 40px -16px rgba(197,55,192,.45)}
+.card.x:hover{border-color:rgba(255,255,255,.4);box-shadow:0 18px 40px -16px rgba(255,255,255,.3)}
+
+.art{position:relative;aspect-ratio:3/2;overflow:hidden;border-bottom:1px solid var(--line)}
+.art img{width:100%;height:100%;object-fit:cover;display:block;
+  transition:transform .5s cubic-bezier(.2,.8,.2,1)}
+.card:hover .art img{transform:scale(1.05)}
+
+.body{padding:clamp(14px,1.3vw,20px);display:flex;flex-direction:column;flex:1}
+.pill{align-self:flex-start;font-family:var(--display);font-weight:700;text-transform:uppercase;
+  letter-spacing:.14em;font-size:11px;padding:4px 10px;border:1px solid;margin-bottom:12px}
+.kick .pill{color:var(--green);border-color:var(--green);text-shadow:0 0 8px var(--green-glow)}
+.yt   .pill{color:var(--yt);border-color:var(--yt)}
+.ig   .pill{color:#e879e3;border-color:var(--ig)}
+.x    .pill{color:#fff;border-color:rgba(255,255,255,.5)}
+
+.ch-name{font-family:var(--display);font-weight:800;text-transform:uppercase;
+  letter-spacing:.02em;font-size:clamp(18px,1.5vw,23px);color:#fff;line-height:1;margin-bottom:10px}
+.ch-desc{font-size:14px;line-height:1.5;color:var(--dim);margin-bottom:16px;flex:1}
+.tagrow{font-family:var(--display);font-weight:700;text-transform:uppercase;letter-spacing:.06em;
+  font-size:11.5px;margin-bottom:16px}
+.kick .tagrow{color:var(--green)} .yt .tagrow{color:var(--yt)}
+.ig .tagrow{color:#e879e3} .x .tagrow{color:var(--dim)}
+
+.watch{display:flex;align-items:center;justify-content:center;gap:8px;
+  font-family:var(--display);font-weight:800;text-transform:uppercase;letter-spacing:.14em;
+  font-size:14px;padding:13px;border:1.5px solid;text-decoration:none;
+  transition:background .25s,color .25s,box-shadow .25s}
+.kick .watch{color:var(--green);border-color:var(--green)}
+.kick .watch:hover{background:var(--green);color:#0a0a0a;box-shadow:0 0 22px rgba(134,224,0,.45)}
+.yt .watch{color:var(--yt);border-color:var(--yt)}
+.yt .watch:hover{background:var(--yt);color:#fff;box-shadow:0 0 22px rgba(255,45,45,.45)}
+.ig .watch{color:#e879e3;border-color:var(--ig)}
+.ig .watch:hover{background:var(--ig);color:#fff;box-shadow:0 0 22px rgba(197,55,192,.5)}
+.x .watch{color:#fff;border-color:rgba(255,255,255,.6)}
+.x .watch:hover{background:#fff;color:#0a0a0a;box-shadow:0 0 22px rgba(255,255,255,.3)}
+
+/* ===================== FOOTER ===================== */
+.footer{position:relative;border-top:1px solid var(--line);background:#060606;
+  padding:clamp(16px,1.8vw,24px) clamp(20px,3vw,44px);
+  display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap}
+.f-left,.f-right{font-family:var(--display);font-weight:700;text-transform:uppercase;
+  letter-spacing:.18em;font-size:clamp(11px,1.2vw,14px);color:var(--green);
+  display:flex;align-items:center;gap:12px}
+.f-center{font-family:var(--display);font-weight:700;text-transform:uppercase;
+  letter-spacing:.2em;font-size:clamp(11px,1.2vw,15px);color:var(--steel);flex:1;text-align:center;min-width:200px}
+.bars{display:flex;align-items:flex-end;gap:2px;height:14px}
+.bars span{width:3px;background:var(--green);box-shadow:0 0 6px var(--green-glow)}
+.bars span:nth-child(1){height:30%}.bars span:nth-child(2){height:55%}
+.bars span:nth-child(3){height:78%}.bars span:nth-child(4){height:100%}
+.f-right .rh{font-size:20px;background:linear-gradient(180deg,#fff,#888);
+  -webkit-background-clip:text;background-clip:text;color:transparent;font-weight:900}
+.f-right .tv{font-size:11px;color:var(--green);border:1px solid var(--green);padding:1px 4px;margin-left:4px}
+@media (max-width:680px){.footer{justify-content:center;text-align:center}.f-center{order:3}}
+
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
 </head>
 <body>
 
-  <div class="video-wrapper">
-    <video
-      id="main-video"
-      src="verticalweb2.mp4"
-      autoplay
-      muted
-      playsinline
-      preload="auto"
-    ></video>
-  </div>
+<!-- ===== INTRO COLD OPEN ===== -->
+<div id="intro">
+  <video id="vid-desktop" muted playsinline autoplay preload="auto">
+    <source src="intro-desktop.mp4" type="video/mp4">
+  </video>
+  <video id="vid-mobile" muted playsinline autoplay preload="auto">
+    <source src="intro-mobile.mp4" type="video/mp4">
+  </video>
+  <button class="skip" id="skip">Enter <span class="arr">&rsaquo;</span></button>
+</div>
 
-  <div id="downloads-section">
-    <div id="downloads-inner">
-      <p class="downloads-label">Available Now</p>
-      <h1 class="downloads-title">Get the Gems</h1>
+<!-- ===== SITE ===== -->
+<div class="site" id="site">
 
-      <div class="download-list">
-        <div class="download-item">
-          <div class="download-info">
-            <span class="download-name">File Name Here</span>
-            <span class="download-desc">Short description of what this is</span>
-          </div>
-          <a href="#" class="download-btn">Download</a>
-        </div>
-
-        <div class="download-item">
-          <div class="download-info">
-            <span class="download-name">File Name Here</span>
-            <span class="download-desc">Short description of what this is</span>
-          </div>
-          <a href="#" class="download-btn">Download</a>
-        </div>
-
-        <div class="download-item">
-          <div class="download-info">
-            <span class="download-name">File Name Here</span>
-            <span class="download-desc">Short description of what this is</span>
-          </div>
-          <a href="#" class="download-btn">Download</a>
-        </div>
+  <header class="header">
+    <div class="header-inner">
+      <div class="rh-badge"><span class="rh">RH</span><span class="tv">TV</span></div>
+      <div class="title-block">
+        <h1 class="wordmark">Rhino House TV</h1>
+        <div class="subline"><span>Combat</span><span class="dot"></span><span>Culture</span><span class="dot"></span><span>Commentary</span></div>
       </div>
-
-      <div class="contact-line">
-        Questions? <a href="mailto:hello@rhinohousemedia.com">hello@rhinohousemedia.com</a>
-      </div>
+      <div class="spacer"></div>
     </div>
-  </div>
+  </header>
 
-  <script src="script.js"></script>
+  <nav class="guidebar" aria-label="Channel guide">
+    <div class="guide-label">
+      <div class="g1">Channel Guide</div>
+      <div class="g2">Select a Channel</div>
+    </div>
+    <div class="tabs">
+      <button class="tab active">All Channels</button>
+      <button class="tab" tabindex="-1" aria-disabled="true">Live</button>
+      <button class="tab" tabindex="-1" aria-disabled="true">Shows</button>
+      <button class="tab" tabindex="-1" aria-disabled="true">Shorts</button>
+      <button class="tab" tabindex="-1" aria-disabled="true">News</button>
+      <button class="tab" tabindex="-1" aria-disabled="true">Featured</button>
+    </div>
+  </nav>
+
+  <main class="grid">
+
+    <article class="card kick">
+      <div class="art"><img src="kick.jpeg" alt="Kick channel"></div>
+      <div class="body">
+        <span class="pill">Live Now</span>
+        <h2 class="ch-name">Kick Channel</h2>
+        <p class="ch-desc">Live streams, uncut conversations, fight breakdowns, and real-time community interaction.</p>
+        <div class="tagrow">Live &nbsp;•&nbsp; Interaction &nbsp;•&nbsp; Community</div>
+        <a class="watch" href="https://kick.com/rhinohousetv" target="_blank" rel="noopener">Watch Now <span class="arr">&rsaquo;</span></a>
+      </div>
+    </article>
+
+    <article class="card yt">
+      <div class="art"><img src="youtube.jpeg" alt="YouTube channel"></div>
+      <div class="body">
+        <span class="pill">Featured</span>
+        <h2 class="ch-name">YouTube Channel</h2>
+        <p class="ch-desc">Full-length shows, fight analysis, exclusive interviews, and original documentary content.</p>
+        <div class="tagrow">Shows &nbsp;•&nbsp; Interviews &nbsp;•&nbsp; Documentaries</div>
+        <a class="watch" href="https://youtube.com/@rhinohousetv" target="_blank" rel="noopener">Watch Now <span class="arr">&rsaquo;</span></a>
+      </div>
+    </article>
+
+    <article class="card ig">
+      <div class="art"><img src="instagram.jpeg" alt="Instagram channel"></div>
+      <div class="body">
+        <span class="pill">Trending</span>
+        <h2 class="ch-name">Instagram Channel</h2>
+        <p class="ch-desc">Daily highlights, behind-the-scenes content, reels, stories, and culture in real time.</p>
+        <div class="tagrow">Highlights &nbsp;•&nbsp; Reels &nbsp;•&nbsp; Stories</div>
+        <a class="watch" href="https://www.instagram.com/rhinohousetv" target="_blank" rel="noopener">Watch Now <span class="arr">&rsaquo;</span></a>
+      </div>
+    </article>
+
+    <article class="card x">
+      <div class="art"><img src="x.jpeg" alt="X channel"></div>
+      <div class="body">
+        <span class="pill">Latest</span>
+        <h2 class="ch-name">X Channel</h2>
+        <p class="ch-desc">Breaking news, hot takes, updates, polls, and conversations from around the world.</p>
+        <div class="tagrow">News &nbsp;•&nbsp; Updates &nbsp;•&nbsp; Discussion</div>
+        <a class="watch" href="https://x.com/rhinohouse_tv" target="_blank" rel="noopener">Watch Now <span class="arr">&rsaquo;</span></a>
+      </div>
+    </article>
+
+  </main>
+
+  <footer class="footer">
+    <div class="f-left">Rhino House TV Network <span class="bars"><span></span><span></span><span></span><span></span></span></div>
+    <div class="f-center">Your Network. Your Culture.</div>
+    <div class="f-right">Powered By <span class="rh">RH</span><span class="tv">TV</span></div>
+  </footer>
+
+</div>
+
+<script>
+(function(){
+  var intro = document.getElementById('intro');
+  var site  = document.getElementById('site');
+  var skip  = document.getElementById('skip');
+
+  var isMobile = window.matchMedia('(max-width:760px)').matches;
+  var vid = document.getElementById(isMobile ? 'vid-mobile' : 'vid-desktop');
+
+  // Known durations (seconds) used ONLY as a fallback if the browser
+  // can't report the real metadata duration: desktop 8s, mobile 5s.
+  var FALLBACK = isMobile ? 5 : 8;
+  var BUFFER   = 0.3;   // small pad so the reveal doesn't clip the final frame
+  var revealed = false;
+  var timer = null;
+
+  function reveal(){
+    if(revealed) return;
+    revealed = true;
+    if(timer){ clearTimeout(timer); }
+    intro.classList.add('done');
+    site.classList.add('in');
+    window.scrollTo({top:0, behavior:'smooth'});
+  }
+
+  // Arm the duration-based timer. Prefer the video's real reported duration;
+  // fall back to the known length if metadata is unavailable.
+  function armTimer(){
+    var secs = FALLBACK;
+    if(vid && isFinite(vid.duration) && vid.duration > 0){
+      secs = vid.duration;
+    }
+    if(timer){ clearTimeout(timer); }
+    timer = setTimeout(reveal, (secs + BUFFER) * 1000);
+  }
+
+  if(vid){
+    var started = false;  // did the video actually begin painting frames?
+
+    // Fade the video in once its first frame can paint (no empty-box flash).
+    vid.addEventListener('loadeddata', function(){ started = true; vid.classList.add('ready'); });
+    vid.addEventListener('playing',   function(){ started = true; });
+
+    // 1) Natural completion — fastest, most accurate when it fires.
+    vid.addEventListener('ended', reveal);
+    // 2) Once real duration is known, set a deterministic reveal timer.
+    vid.addEventListener('loadedmetadata', armTimer);
+
+    // 3) Failure handling. A missing/broken source often does NOT fire an
+    //    error on the <video> element (networkState becomes NO_SOURCE silently),
+    //    so we listen on the <source> child too, and inspect networkState.
+    vid.addEventListener('error', function(){ reveal(); });
+    var src = vid.querySelector('source');
+    if(src){ src.addEventListener('error', function(){ reveal(); }); }
+
+    // Attempt autoplay (muted). If blocked, the skip button + timer still cover it.
+    var p = vid.play && vid.play();
+    if(p && p.catch){ p.catch(function(){ armTimer(); }); }
+
+    // If metadata is already available (cached), arm immediately.
+    if(isFinite(vid.duration) && vid.duration > 0){ armTimer(); }
+
+    // Tight watchdog: if the video hasn't started within 2.5s (broken/missing
+    // file, NO_SOURCE), reveal the guide instead of holding on black.
+    setTimeout(function(){
+      if(!started && (vid.networkState === 3 || vid.readyState === 0)){ reveal(); }
+    }, 2500);
+  } else {
+    // No video element at all → reveal right away.
+    reveal();
+  }
+
+  // Manual override, always available.
+  skip.addEventListener('click', reveal);
+
+  // Absolute safety net: even if every signal above fails, never strand
+  // the visitor. Generous margin over the longest known clip.
+  setTimeout(reveal, (FALLBACK + 4) * 1000);
+})();
+</script>
 </body>
 </html>
