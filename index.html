@@ -3,7 +3,50 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Rhino House TV — Channel Guide</title>
+<title>Rhino House Media | Production Company • New York</title>
+
+<meta name="description" content="Rhino House Media is a New York-based production company specializing in cinematic storytelling, combat sports content, and culture-driven media. Watch our latest work and connect with us across platforms.">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://www.rhinohousemedia.com/">
+
+<!-- Open Graph -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Rhino House Media">
+<meta property="og:title" content="Rhino House Media | Production Company • New York">
+<meta property="og:description" content="Rhino House Media is a New York-based production company specializing in cinematic storytelling, combat sports content, and culture-driven media.">
+<meta property="og:url" content="https://www.rhinohousemedia.com/">
+<meta property="og:image" content="https://www.rhinohousemedia.com/youtube.jpeg">
+<meta property="og:locale" content="en_US">
+
+<!-- Twitter / X Card -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Rhino House Media | Production Company • New York">
+<meta name="twitter:description" content="Rhino House Media is a New York-based production company specializing in cinematic storytelling, combat sports content, and culture-driven media.">
+<meta name="twitter:image" content="https://www.rhinohousemedia.com/youtube.jpeg">
+<meta name="twitter:site" content="@rhinohouse_tv">
+
+<!-- JSON-LD Organization Schema -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "Rhino House Media",
+  "url": "https://www.rhinohousemedia.com/",
+  "description": "Rhino House Media is a New York-based production company specializing in cinematic storytelling, combat sports content, and culture-driven media.",
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "New York",
+    "addressRegion": "NY",
+    "addressCountry": "US"
+  },
+  "sameAs": [
+    "https://youtube.com/@rhinohousetv",
+    "https://www.instagram.com/rhinohousetv",
+    "https://kick.com/rhinohousetv",
+    "https://x.com/rhinohouse_tv"
+  ]
+}
+</script>
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Saira+Condensed:wght@500;600;700;800;900&family=Saira:wght@400;500;600&display=swap');
 
@@ -38,6 +81,7 @@ body{background:var(--black);color:var(--steel);font-family:var(--body);
   #vid-desktop{display:none}
   #vid-mobile{display:block}
 }
+
 .skip{position:absolute;bottom:26px;right:26px;z-index:2;
   font-family:var(--display);font-weight:700;letter-spacing:.22em;font-size:12px;
   text-transform:uppercase;color:var(--steel);background:rgba(0,0,0,.45);
@@ -59,23 +103,19 @@ body{background:var(--black);color:var(--steel);font-family:var(--body);
   background:linear-gradient(90deg,transparent,var(--green-glow),transparent);opacity:.5}
 .header-inner{display:flex;align-items:center;gap:clamp(16px,3vw,40px);
   max-width:1680px;margin:0 auto;position:relative;z-index:2}
-.rh-badge{font-family:var(--display);font-weight:900;flex:none;display:flex;align-items:center;gap:7px;line-height:1}
-.rh-badge .rh{font-size:clamp(34px,4vw,56px);
-  background:linear-gradient(180deg,#fff,#cfd3d1 40%,#6f7472 100%);
-  -webkit-background-clip:text;background-clip:text;color:transparent;letter-spacing:-.02em}
-.rh-badge .tv{font-size:clamp(13px,1.4vw,18px);font-weight:800;color:var(--green);
-  border:1.5px solid var(--green);padding:2px 6px;letter-spacing:.05em;
-  box-shadow:0 0 12px rgba(134,224,0,.25);text-shadow:0 0 8px var(--green-glow)}
 .title-block{flex:1;text-align:center}
 .wordmark{font-family:var(--display);font-weight:900;text-transform:uppercase;
   font-size:clamp(30px,6vw,76px);line-height:.9;letter-spacing:.01em;
   background:linear-gradient(180deg,#fff 0%,#d2d6d4 36%,#838886 72%,#525654 100%);
   -webkit-background-clip:text;background-clip:text;color:transparent;
   filter:drop-shadow(0 2px 1px rgba(0,0,0,.6))}
-.spacer{flex:none;width:clamp(34px,4vw,56px)}
+.subline{font-family:var(--display);font-weight:700;text-transform:uppercase;
+  letter-spacing:.3em;font-size:clamp(10px,1.5vw,17px);color:var(--green);
+  margin-top:8px;display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:.5em 1.1em;
+  text-shadow:0 0 10px rgba(134,224,0,.3)}
+.subline .dot{width:5px;height:5px;border-radius:50%;background:var(--green);box-shadow:0 0 8px var(--green-glow)}
 @media (max-width:760px){
   .header-inner{flex-direction:column;gap:14px}
-  .spacer{display:none}
 }
 
 /* ===================== GUIDE BAR ===================== */
@@ -187,11 +227,10 @@ body{background:var(--black);color:var(--steel);font-family:var(--body);
 
   <header class="header">
     <div class="header-inner">
-      <div class="rh-badge"><span class="rh">RH</span><span class="tv">TV</span></div>
       <div class="title-block">
-        <h1 class="wordmark">Rhino House TV</h1>
+        <h1 class="wordmark">Rhino House Media</h1>
+        <div class="subline"><span>Production Company</span><span class="dot"></span><span>New York</span></div>
       </div>
-      <div class="spacer"></div>
     </div>
   </header>
 
@@ -259,7 +298,7 @@ body{background:var(--black);color:var(--steel);font-family:var(--body);
   </main>
 
   <footer class="footer">
-    <div class="f-left">Rhino House TV Network <span class="bars"><span></span><span></span><span></span><span></span></span></div>
+    <div class="f-left">Rhino House Media Network <span class="bars"><span></span><span></span><span></span><span></span></span></div>
     <div class="f-center">Your Network. Your Culture.</div>
     <div class="f-right">Powered By <span class="rh">RH</span><span class="tv">TV</span></div>
   </footer>
