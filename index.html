@@ -1,194 +1,134 @@
 <!doctype html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Rhino House Media | Production Consultancy</title>
-<meta name="description" content="Rhino House Media is a creative production consultancy for independent filmmakers and independent film companies.">
-<meta name="theme-color" content="#030406">
-<link rel="icon" href="/media/rhino-emblem.jpeg">
-<link rel="shortcut icon" href="/media/rhino-emblem.jpeg">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Rhino House Media | Production Consultancy">
-<meta property="og:description" content="Rhino House Media is a creative production consultancy for independent filmmakers and independent film companies.">
-<meta property="og:image" content="/media/rhino-emblem.jpeg">
-<meta name="twitter:card" content="summary_large_image">
-<link rel="preload" as="image" href="/media/binder-desktop.png" media="(min-width: 701px)">
-<link rel="preload" as="image" href="/media/binder-mobile.png" media="(max-width: 700px)">
-<link rel="stylesheet" href="/styles.css">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#0c0909">
+  <meta name="description" content="Rhino House Media, a New York creative agency and production house. Creative direction, campaigns, and cinematography.">
+  <title>Rhino House Media — Studio</title>
+  <link rel="icon" href="data:,">
+  <link rel="preload" as="image" href="assets/studio.webp" fetchpriority="high">
+  <link rel="stylesheet" href="studio.css?v=2">
+  <link rel="stylesheet" href="direction-room.css">
+  <script src="vendor/gsap-3.13.0.min.js" defer></script>
+  <script src="studio.js?v=5" defer></script>
+  <script type="module" src="scene/home-scene.js"></script>
+  <link rel="stylesheet" href="reel.css">
+  <script src="reel.js" defer></script>
+  <link rel="stylesheet" href="contact-room.css?v=6">
+  <script src="contact-motion.js" defer></script>
+  <link rel="stylesheet" href="production-room.css">
 </head>
-<body class="antialiased">
-
-<main class="site">
-
-  <svg class="svg-definitions" aria-hidden="true" width="0" height="0">
-    <defs>
-      <linearGradient id="phone-metal" x1="0" y1="0" x2="1" y2="1">
-        <stop offset="0%" stop-color="#ffffff"></stop>
-        <stop offset="26%" stop-color="#dce3eb"></stop>
-        <stop offset="44%" stop-color="#697782"></stop>
-        <stop offset="66%" stop-color="#f9fafc"></stop>
-        <stop offset="100%" stop-color="#939fae"></stop>
-      </linearGradient>
-    </defs>
-  </svg>
-
-  <section class="binder-entry" aria-label="Enter Rhino House Media" aria-hidden="false">
-    <button class="entry-target" type="button" aria-label="Open Rhino House Media">
-      <picture>
-        <source media="(max-width: 700px)" srcset="/media/binder-mobile.png">
-        <img class="binder-image" src="/media/binder-desktop.png" alt="Rhino House Media production binder">
-      </picture>
-      <span class="entry-shade"></span>
-      <span class="entry-caption">
-        <span class="entry-line"></span>
-        <span>Tap or click to open</span>
-        <span class="entry-line"></span>
-      </span>
-    </button>
-  </section>
-
-  <div class="site-shell">
-
-    <div class="ambient-light" aria-hidden="true"></div>
-    <div class="moving-light" aria-hidden="true"></div>
-    <img class="ghost-emblem" src="/media/rhino-emblem.jpeg" alt="" aria-hidden="true">
-
-    <header class="masthead">
-      <a class="wordmark" href="#top" aria-label="Rhino House Media home">
-        <img src="/media/rhino-emblem.jpeg" alt="" width="46" height="46">
-        <span class="wordmark-text">RHINO HOUSE <span>MEDIA</span></span>
-      </a>
-      <p>NEW YORK · PRODUCTION CONSULTANCY</p>
-    </header>
-
-    <section class="intro" id="top">
-      <p class="eyebrow" data-reveal="left">Independent film, made deliberate.</p>
-      <h1 tabindex="-1" data-reveal="depth">Ideas deserve more than a conversation. <span>They deserve a path to the screen.</span></h1>
-      <p class="lede" data-reveal="left">Rhino House Media is a creative production consultancy for independent filmmakers and independent film companies. We help turn thoughts, ideas, and ambition into a cinematic production with a real way forward.</p>
-    </section>
-
-    <section class="service-section" aria-labelledby="how-we-help">
-      <div class="section-heading" data-reveal="right">
-        <p class="eyebrow">How Rhino House helps</p>
-        <h2 id="how-we-help">The work begins before the shoot.</h2>
-      </div>
-      <div class="service-grid">
-        <article class="metal-panel" data-reveal="left">
-          <span>01</span>
-          <h3>Story &amp; Development</h3>
-          <p>Clarify the central idea, shape the approach, and find the version of the story worth putting in front of an audience.</p>
-        </article>
-        <article class="metal-panel" data-reveal="right">
-          <span>02</span>
-          <h3>Production Strategy</h3>
-          <p>Build a practical way to make it: preparation, scheduling, crew, resources, and decisions that protect the film.</p>
-        </article>
-        <article class="metal-panel" data-reveal="left">
-          <span>03</span>
-          <h3>Cinematic Execution</h3>
-          <p>Bring the work to set with a producer&rsquo;s eye for the whole picture, from the visual language to the people needed to make it real.</p>
-        </article>
-        <article class="metal-panel" data-reveal="right">
-          <span>04</span>
-          <h3>Post &amp; Forward Motion</h3>
-          <p>Carry the project through edit, finish, delivery, and the next conversation it needs to have in the world.</p>
-        </article>
+<body>
+  <main aria-label="Rhino House Media studio" aria-roledescription="carousel">
+    <section id="studio" class="panel home is-current" aria-labelledby="studio-title" data-name="Studio">
+      <h1 id="studio-title" class="sr-only" tabindex="-1">Rhino House Media</h1>
+      <div class="set">
+        <div class="room-top"></div><div class="room-floor"></div>
+        <img class="master" width="1671" height="941" src="assets/studio.webp" alt="A cinema camera sits beside RHINO in a sunset skyline, above HOUSE in stone and MEDIA in red city lights." draggable="false">
+        <div class="sky" aria-hidden="true"><div></div></div>
+        <div class="window-sprite" aria-hidden="true"></div>
+        <div class="haze-sprite" aria-hidden="true"></div>
+        <canvas class="live-stage" aria-hidden="true"></canvas>
+        <svg class="edge-light" viewBox="0 0 1060 597" preserveAspectRatio="none" aria-hidden="true">
+          <defs>
+            <linearGradient id="warmR"><stop stop-color="#ff2600" stop-opacity="0"/><stop offset=".70" stop-color="#ff5425"/><stop offset="1" stop-color="#fff6d5"/></linearGradient>
+            <linearGradient id="warmL"><stop stop-color="#fff6d5"/><stop offset=".38" stop-color="#ff622a"/><stop offset="1" stop-color="#ff2600" stop-opacity="0"/></linearGradient>
+            <filter id="glow" filterUnits="userSpaceOnUse" x="0" y="0" width="1060" height="597"><feGaussianBlur stdDeviation="3.2"/></filter>
+            <path id="rt" d="M895 242 L905 250 L951.6 309.4 L906 369.5 L897 381"/>
+            <path id="lt" d="M165 391 L155 402 L111.9 453.5 L153 511 L164 522"/>
+          </defs>
+          <g class="pulse right" stroke="url(#warmR)"><use href="#rt" stroke-width="8" filter="url(#glow)"/><use href="#rt" stroke-width="2.6"/></g>
+          <g class="pulse left" stroke="url(#warmL)"><use href="#lt" stroke-width="8" filter="url(#glow)"/><use href="#lt" stroke-width="2.6"/></g>
+        </svg>
+        <a class="plaque creative-plaque" href="#creative-direction" data-go="creative-direction" aria-label="Creative direction, enter on the right"></a>
+        <a class="plaque contact-plaque" href="#contact" data-go="contact" aria-label="Contact, enter on the left"></a>
       </div>
     </section>
 
-    <section class="statement">
-      <p class="eyebrow" data-reveal="left">The Rhino House point of view</p>
-      <p data-reveal="depth">Independent filmmaking does not need smaller thinking. <span>It needs clear direction, serious preparation, and people who know how to move an idea from possibility into a film.</span></p>
-    </section>
-
-    <footer class="contact" id="contact" data-motion="true">
-      <div class="contact-intro">
-        <h2 class="contact-heading" data-reveal="depth">Contact Us</h2>
-        <div class="contact-actions">
-
-          <a class="email-plaque" href="mailto:Studio@rhinohousemedia.com" aria-label="Email Studio@rhinohousemedia.com">
-            <span class="plaque-object" aria-hidden="true">
-              <span class="plaque-face plaque-front"><span>Studio@rhinohousemedia.com</span></span>
-              <span class="plaque-face plaque-back"><span>Studio@rhinohousemedia.com</span></span>
-              <span class="plaque-edge plaque-top"></span>
-              <span class="plaque-edge plaque-bottom"></span>
-              <span class="plaque-edge plaque-left"></span>
-              <span class="plaque-edge plaque-right"></span>
-            </span>
-          </a>
-
-          <a class="agent-contact" href="tel:+19179056533" data-reveal="depth">
-            <span class="matrix-rain" aria-hidden="true">
-              <span style="--column:0">0101 0011 1010 1101</span>
-              <span style="--column:1">1010 1100 0101 0010</span>
-              <span style="--column:2">1101 0101 0011 1010</span>
-              <span style="--column:3">0010 1011 0100 1101</span>
-              <span style="--column:4">1011 0010 1101 0100</span>
-              <span style="--column:5">0100 1101 1010 0011</span>
-              <span style="--column:6">1100 0101 0010 1011</span>
-              <span style="--column:7">0011 1010 1100 0101</span>
-            </span>
-            <span class="phone-metal">
-              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="url(#phone-metal)" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                <path d="M13 2a9 9 0 0 1 9 9"></path>
-                <path d="M13 6a5 5 0 0 1 5 5"></path>
-                <path d="M13.832 16.568a1 1 0 0 0 1.213-.303l.355-.465A2 2 0 0 1 17 15h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2A18 18 0 0 1 2 4a2 2 0 0 1 2-2h3a2 2 0 0 1 2 2v3a2 2 0 0 1-.8 1.6l-.468.351a1 1 0 0 0-.292 1.233 14 14 0 0 0 6.392 6.384"></path>
-              </svg>
-            </span>
-            <span class="agent-details">
-              <span class="agent-label">Speak to agent</span>
-              <span class="agent-number">917-905-6533</span>
-            </span>
-          </a>
-
+    <section id="creative-direction" class="panel chapter direction" aria-labelledby="direction-title" data-name="Creative direction" inert>
+      <div class="room-track">
+        <div class="series-wall">
+          <figure class="series-art">
+            <div class="octagon"><img src="assets/direction/octagon.webp" alt="BEHAVE LIKE A BRAND in sculpted silver lettering inside an obsidian octagon" width="1127" height="1147"></div>
+            <figcaption>Series in production</figcaption>
+          </figure>
+          <div class="series-intro">
+            <h2 id="direction-title" class="silver-title" tabindex="-1">What did the brand see that everybody else missed?</h2>
+            <p>An original 45-second series from Rhino House Media. We break down the decisions behind major campaigns, call out what worked or backfired, and pull out the move you can use in your own business.</p>
+          </div>
+        </div>
+        <div class="approach-wall" tabindex="-1">
+          <p>That’s how we approach creative direction. Before we pitch an idea, we ask two questions.</p>
+          <p class="room-questions"><span>What matters to your customer in this moment?</span> <span>What would give them a reason to act?</span></p>
+          <p>Those answers shape the strategy, the concept, and the work we produce. Your audience gets something worth paying attention to. Your brand gives them a reason to take the next step.</p>
         </div>
       </div>
+    </section>
 
-      <nav class="platforms" aria-label="Rhino House Media platforms">
-        <a class="platform platform-youtube" href="https://youtube.com/@rhinohousemedia?si=3GJTzmTmS00yZHqD" target="_blank" rel="noopener noreferrer" aria-label="Rhino House Media on YouTube" style="--phase:0s">
-          <span class="seal-object" aria-hidden="true">
-            <span class="seal-thickness"></span>
-            <span class="platform-seal"></span>
-            <span class="seal-shimmer"></span>
-          </span>
-          <span class="sr-only">YouTube</span>
-        </a>
-        <a class="platform platform-instagram" href="https://www.instagram.com/rhinohousetv?stkn=Ymx2YTcyMHZ1cWkz&amp;utm_source=qr" target="_blank" rel="noopener noreferrer" aria-label="Rhino House Media on Instagram" style="--phase:-0.8s">
-          <span class="seal-object" aria-hidden="true">
-            <span class="seal-thickness"></span>
-            <span class="platform-seal"></span>
-            <span class="seal-shimmer"></span>
-          </span>
-          <span class="sr-only">Instagram</span>
-        </a>
-        <a class="platform platform-x" href="https://x.com/rhinohouse_tv?s=11" target="_blank" rel="noopener noreferrer" aria-label="Rhino House Media on X" style="--phase:-1.6s">
-          <span class="seal-object" aria-hidden="true">
-            <span class="seal-thickness"></span>
-            <span class="platform-seal"></span>
-            <span class="seal-shimmer"></span>
-          </span>
-          <span class="sr-only">X</span>
-        </a>
-        <a class="platform platform-kick" href="https://kick.com/rhinohousetv" target="_blank" rel="noopener noreferrer" aria-label="Rhino House Media on Kick" style="--phase:-2.4s">
-          <span class="seal-object" aria-hidden="true">
-            <span class="seal-thickness"></span>
-            <span class="platform-seal"></span>
-            <span class="seal-shimmer"></span>
-          </span>
-          <span class="sr-only">Kick</span>
-        </a>
-      </nav>
+    <section id="campaigns" class="panel chapter campaigns" aria-labelledby="campaign-title" data-name="Campaigns" inert>
+      <div class="reel-layout">
+        <div class="reel-heading"><h2 id="campaign-title" tabindex="-1">Campaigns &amp; film</h2>
+        <div class="reel-buttons" role="group" aria-label="Film reel controls"><button id="reel-prev" aria-label="Previous photograph">Prev</button><button id="reel-next" aria-label="Next photograph">Next</button></div></div>
+        <div class="film-gate"><div class="film-track" role="region" aria-label="Film reel, swipe sideways or use arrow keys" tabindex="0">
+          <img src="assets/reel/IMG_2245.jpeg" width="702" height="598" alt="Quic-Klean sneaker wipes beside red and white sneakers" draggable="false">
+          <img src="assets/reel/IMG_2247.jpeg" width="1102" height="1592" alt="Portrait of a man wearing Ray-Ban glasses" draggable="false">
+          <img src="assets/reel/IMG_2250.jpeg" width="1251" height="922" alt="Ice-cold Corona Hard Seltzer with raspberries and lime" draggable="false">
+          <img src="assets/reel/IMG_2249.jpeg" width="1227" height="948" alt="A yellow handbag framed against a red coat" draggable="false">
+          <img src="assets/reel/IMG_2248.jpeg" width="1175" height="1105" alt="A woman in profile double-exposed with the New York skyline" draggable="false">
+        </div></div>
+        <div class="reel-copy">
+          <p>It could be the anticipation of that first sip of an ice-cold Corona. The confidence that comes with a pair of Ray-Bans. The pride of stepping out in fresh sneakers and wanting to keep them that way. In a feature film, it could be a single look that says what a character can’t.</p>
+          <p>At Rhino House Media, creative direction starts with understanding what you want your audience to feel. For brands, we find what makes a product matter to the person buying it and build the campaign around that. For producers, we take the feeling on the page and give it a visual language that carries from the opening frame to the final cut.</p>
+        </div>
+        <button class="reel-read">Read on</button>
+      </div>
+    </section>
 
-      <p class="footer-mark">RHINO HOUSE MEDIA</p>
-    </footer>
+    <section id="production" class="panel chapter production" aria-labelledby="production-title" data-name="Production" inert>
+      <div class="spread">
+        <div class="copy">
+          <p class="kicker">Production</p>
+          <h2 id="production-title" tabindex="-1">Behind <br>the lens.</h2>
+          <p class="body-copy">The Rhino House cinematography reel. A look at how we use light, movement, and framing across our work.</p>
+        </div>
+        <a class="darkroom-play" href="https://vimeo.com/914175807" target="_blank" rel="noopener" aria-label="Play the Rhino House Media cinematography reel on Vimeo"><span aria-hidden="true"></span></a>
+      </div>
+    </section>
 
-  </div>
+    <section id="contact" class="panel chapter contact" aria-labelledby="contact-title" data-name="Contact" inert>
+      <div class="contact-set">
+        <h2 id="contact-title" class="sr-only" tabindex="-1">Contact Rhino House Media</h2>
+        <div class="contact-negative">
+          <img src="assets/cube/contact-original.jpeg" width="1536" height="864" alt="The twisted Rhino House Media cube resting on the studio floor.">
+          <svg class="tile-map" viewBox="0 0 1536 864" aria-label="Cube contact links">
+            <a href="https://www.instagram.com/rhinohousetv/" target="_blank" rel="noopener" aria-label="Instagram"><polygon points="541,219 550,205 726,193 738,202 738,371 729,384 554,395 542,385"/></a>
+            <a href="https://www.youtube.com/@rhinohousemedia" target="_blank" rel="noopener" aria-label="YouTube"><polygon points="499,390 508,385 534,402 614,397 676,412 688,423 688,567 678,579 508,549 498,535"/></a>
+            <a href="tel:+19179056533" aria-label="Call for brand guidance at 917-905-6533"><polygon points="931,603 951,586 1115,571 1128,582 1128,738 1117,750 944,768 931,756"/></a>
+          </svg>
+        </div>
+        <div class="cube-email"><a class="address" href="mailto:Studio@rhinohousemedia.com">Studio@rhinohousemedia.com</a><button id="copy-email">Copy email</button><span class="copy-status" role="status"></span></div>
+      </div>
+    </section>
+  </main>
 
-  <noscript><style>.binder-entry{display:none!important}.site-shell{opacity:1!important;visibility:visible!important;transform:none!important}body{overflow:auto!important}</style></noscript>
-
-</main>
-
-<script src="/main.js" defer></script>
+  <a class="studio-return" href="#studio" data-go="studio" hidden>Back to studio</a>
+  <nav class="position" aria-label="Studio sections">
+    <button class="motion-preference" hidden type="button" aria-pressed="false">Play motion</button>
+    <span class="counter" aria-hidden="true"><span id="current-number">01</span> / 05</span>
+    <div class="marks">
+      <a href="#studio" data-go="studio" aria-label="Studio" aria-current="page"></a>
+      <a href="#creative-direction" data-go="creative-direction" aria-label="Creative direction"></a>
+      <a href="#campaigns" data-go="campaigns" aria-label="Campaigns"></a>
+      <a href="#production" data-go="production" aria-label="Production"></a>
+      <a href="#contact" data-go="contact" aria-label="Contact"></a>
+    </div>
+  </nav>
+  <nav class="side-nav" aria-label="Move between sections">
+    <a id="prev" href="#contact" aria-label="Previous section, Contact"><i aria-hidden="true"></i><span>Contact</span></a>
+    <a id="next" href="#creative-direction" aria-label="Next section, Creative direction"><span>Creative direction</span><i aria-hidden="true"></i></a>
+  </nav>
+  <p id="announcement" class="sr-only" role="status" aria-live="polite"></p>
+  <noscript><style>.home .plaque,.side-nav,.position{display:none}</style><div class="no-script"><a href="mailto:Studio@rhinohousemedia.com">Contact the studio</a><a href="https://vimeo.com/914175807">Watch the reel</a></div></noscript>
 </body>
 </html>

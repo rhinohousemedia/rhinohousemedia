@@ -1,0 +1,49 @@
+@font-face{
+  font-family:ProductionFilm;
+  src:local("YWFT Filmhaus"),local("YWFT Filmhaus Regular"),local("YWFTFilmhaus-Regular"),url("assets/direction/display.woff2") format("woff2");
+  font-display:swap;
+}
+#production{
+  background:#190c09;
+  isolation:isolate;
+}
+#production::before{
+  content:"";position:absolute;inset:0;z-index:-1;
+  background:linear-gradient(90deg,#0f0506b8,transparent 61%),url("assets/production-darkroom.jpeg") center/cover no-repeat;
+}
+#production .spread{grid-template-columns:1fr 1fr}
+#production .copy{max-width:34rem}
+#production :is(.kicker,h2,.body-copy),body:has(#production.is-current) :is(.counter,.studio-return,.side-nav span,.motion-preference){
+  font-family:ProductionFilm,"Arial Narrow",sans-serif;
+  background-image:linear-gradient(174deg,#fff 8%,#f2f3f4 36%,#b4b6b8 59%,#f1f2f3 83%,#c4c6c8);
+  background-clip:text;-webkit-background-clip:text;color:transparent;
+  filter:drop-shadow(0 1px 3px #080301);
+}
+#production h2{letter-spacing:-.025em}
+#production .body-copy{line-height:1.35;font-size:clamp(1.15rem,1.55vw,1.5rem)}
+.darkroom-play{
+  display:grid;place-items:center;justify-self:center;width:clamp(66px,7.5vw,114px);aspect-ratio:1;border-radius:50%;
+  background:conic-gradient(from 35deg,#fafafa,#929495 14%,#622127 32%,#bc3232 46%,#6a686a 65%,#fff 85%,#c3c3c3);
+  border:1px solid #e0d5cf;box-shadow:inset 1px 2px 2px #fff9,0 4px 0 #4b2323,0 8px 13px #130604b5;
+  position:relative;transition:transform .15s,box-shadow .15s;
+}
+.darkroom-play::before{content:"";position:absolute;inset:6%;border-radius:50%;background:linear-gradient(145deg,#534748,#211a1b 51%,#421b1c);box-shadow:inset 0 1px 3px #000b}
+.darkroom-play span{position:relative;width:31%;height:36%;margin-left:7%;background:linear-gradient(145deg,#fff,#ddd 55%,#969698);clip-path:polygon(0 0,100% 50%,0 100%)}
+.darkroom-play:hover{transform:translateY(-1px)}
+.darkroom-play:active{transform:translateY(3px);box-shadow:0 1px 0 #542a28,0 2px 5px #160706}
+@media(max-aspect-ratio:1/1){
+  #production{background:linear-gradient(155deg,#180a08 2%,#491710 33%,#30170f 56%,#160c08 79%,#0e0807)}
+  #production::before{inset:auto 0;top:54%;height:auto;aspect-ratio:16/9;transform:translateY(-50%);
+    background:url("assets/production-darkroom.jpeg") center/contain no-repeat;
+    mask-image:linear-gradient(transparent,#000 6% 94%,transparent)}
+  #production .spread{display:block;position:relative;padding:0}
+  #production .copy{position:absolute;left:7%;right:7%;bottom:calc(46% + 28.125vw + 10px);max-width:40rem}
+  #production h2{font-size:clamp(2rem,8vw,4.5rem);line-height:1}
+  #production h2 br{display:none}#production h2 br::after{content:" "}
+  #production .kicker{margin:0 0 .45rem}
+  #production .body-copy{margin:.5rem 0 0;font-size:clamp(1rem,4vw,1.2rem);max-width:45ch}
+  .darkroom-play{position:absolute;left:50%;top:min(calc(54% + 28.125vw + 12px),calc(100% - var(--safe-bottom) - 118px));translate:-50% 0;width:64px}
+}
+@media(max-aspect-ratio:1/1) and (max-height:680px){
+  #production .copy{bottom:auto;top:calc(var(--safe-top) + 40px)}
+}
