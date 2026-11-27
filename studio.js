@@ -221,7 +221,7 @@
   follow(location.hash.slice(1), {historyEntry:false,animate:false});
   updateNav();
 
-  document.querySelector("#copy-email").addEventListener("click", async () => {
+  document.querySelector("#copy-email")?.addEventListener("click", async () => {
     const address = document.querySelector(".address");
     const status = document.querySelector(".copy-status");
     try {
